@@ -28,7 +28,7 @@ metadata:
     env: prod
   namespace: prod 
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: nginx
   ports:
