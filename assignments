@@ -1,0 +1,6 @@
+Assignment:
+
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+
+
+https://github.com/qf-devops/kubernetes-demo1/tree/master/kubernetes-liveness-readiness
