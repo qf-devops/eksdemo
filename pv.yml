@@ -13,7 +13,7 @@ spec:
   - ReadWriteOnce
   awsElasticBlockStore:
     fsType: xfs
-    volumeID: vol-0b90a0ce202ca567b
+    volumeID: aws://ap-northeast-1a/vol-0b90a0ce202ca567b
   capacity:
     storage: 10Gi
   persistentVolumeReclaimPolicy: Retain
