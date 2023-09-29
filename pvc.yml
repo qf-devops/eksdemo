@@ -6,26 +6,34 @@ metadata:
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: slow
-  namespace: prod
+  name: myAWSGP2Vol1
 provisioner: kubernetes.io/aws-ebs
 parameters:
-  type: io1
-  iopsPerGB: "3"
+  type: gp2
+  iopsPerGB: "10"
   fsType: ext4
+reclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pg-pv-volume
+spec:
+  capacity:
+    storage: 5Gi
+  storageClassName: myAWSGP2Vol1
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: task-pv-claim
-  namespace: prod
+  name: pg-claim
 spec:
-  storageClassName: slow
   accessModes:
     - ReadWriteOnce
+  storageClassName: myAWSGP2Vol1
   resources:
     requests:
-      storage: 3Gi
+      storage: 10Gi
 ---
 apiVersion: v1
 kind: Pod
@@ -36,7 +44,7 @@ spec:
   volumes:
     - name: task-pv-storage
       persistentVolumeClaim:
-        claimName: task-pv-claim
+        claimName: pg-claim
   containers:
     - name: task-pv-container
       image: nginx
