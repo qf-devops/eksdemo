@@ -14,16 +14,16 @@ parameters:
   iopsPerGB: "10"
   fsType: ext4
 reclaimPolicy: Retain
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pg-pv-volume
-  namespace: prod
-spec:
-  capacity:
-    storage: 5Gi
-  storageClassName: mystorageclass
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: pg-pv-volume
+#   namespace: prod
+# spec:
+#   capacity:
+#     storage: 5Gi
+#   storageClassName: mystorageclass
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
