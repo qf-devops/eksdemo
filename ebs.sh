@@ -1,0 +1,1 @@
+aws ec2 create-volume --region ap-northeast-1 --availability-zone ap-northeast-1a --size10 --volume-type gp2
