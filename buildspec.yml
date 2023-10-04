@@ -16,7 +16,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      #- docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - echo "Setting Environment Variables related to AWS CLI for Kube Config Setup"   
       - CREDENTIALS=$(aws sts assume-role --role-arn arn:aws:iam::675467602881:role/EksCodeBuildKubectlRole --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
@@ -26,6 +26,6 @@ phases:
       # Setup kubectl with our EKS Cluster              
       - echo "Update Kube Config"      
       - aws eks update-kubeconfig --name $EKS_CLUSTER_NAME
-      - cd DevOps-with-AWS-Developer-Tools/Application-Manifests
+      #- cd DevOps-with-AWS-Developer-Tools/Application-Manifests
       - kubectl apply -f kube-manifests/ 
       - kubectl get -f kube-manifests/ 
